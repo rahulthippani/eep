@@ -20,23 +20,11 @@ public class Emp {
 	public void setPosition(String pos) {
 		this.pos = pos;
 	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender=gender;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email=email;
-	}
+
 	int id;
 	String name;
 	String pos;
-	String gender;
-	String email;
+
 	
 
 }

@@ -22,14 +22,15 @@ public class CreateEmp {
 		try {
 			Connection connection = Connectionprovider.getConnection();
 			PreparedStatement stmt = connection
-					.prepareStatement("INSERT INTO employee(name, position,gender,email) VALUES(?, ?, ?, ? ) Returning id");
+					.prepareStatement("INSERT INTO emp(name, pos) VALUES(?,?) Returning id");
 			stmt.setString(1, ep.getName());
 			stmt.setString(2, ep.getPosition());
-			stmt.setString(3, ep.getGender());
-			stmt.setString(4, ep.getEmail());
+			
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
+				
 				return rs.getString("id");
+				
 			}
 
 		} catch (URISyntaxException e) {
@@ -43,6 +44,12 @@ public class CreateEmp {
 	public static void main(String args[])
 	{
 		CreateEmp demo=new CreateEmp();
+		
+		Emp a = new Emp();
+		a.setName("Vibbs");
+		a.setPosition("CEO");
+		
+		System.out.println(demo.execute(a));
 	}
 	
 	

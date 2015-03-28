@@ -20,14 +20,12 @@ public class ListEmp {
 		try {
 			Connection connection = Connectionprovider.getConnection();
 			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM employee");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM emp");
 			while (rs.next()) {
 				Emp e = new Emp();
 				e.setId(rs.getInt("id"));
 				e.setName(rs.getString("name"));
 				e.setPosition(rs.getString("pos"));
-				e.setGender(rs.getString("gender"));
-				e.setEmail(rs.getString("email"));
 				ret.add(e);
 			}
 		} catch (URISyntaxException e) {
@@ -39,7 +37,16 @@ public class ListEmp {
 	}
 	public static void main(String args[])
 	{
+		
+		
 		ListEmp list=new ListEmp();
-		list.execute();
+		ArrayList<Emp> demo = list.execute();
+		
+		for(Emp li : demo){
+			System.out.println(li.getName());
+			System.out.println(li.getPosition());
+		
+		}
+		
 	}
 }
