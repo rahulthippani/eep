@@ -1,15 +1,18 @@
-package model;
+package controller;
+
+
 
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import model.Emp;
 
 
 public class CreateEmp {
@@ -36,7 +39,8 @@ public class CreateEmp {
 		}
 		return "-1";
 	}
-	public staic void main(String args[])
+	
+	public static void main(String args[])
 	{
 		CreateEmp demo=new CreateEmp();
 	}

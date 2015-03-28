@@ -1,4 +1,4 @@
-package model;
+package service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,13 +14,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.org.apache.bcel.internal.Constants;
 
-import model.Song;
-import command.CreateSongCommand;
-import command.GetSongCommand;
-import command.ListSongsCommand;
-import command.UpdateSongCommand;
-import util.Constants;
+import controller.ListEmp;
+import controller.CreateEmp;
+import controller.constants;
+import model.Emp;
+
 
 @Path("employee")
 public class services {
@@ -34,9 +34,9 @@ public class services {
 		ListEmp command = new ListEmp();
 		ArrayList<Emp> list = command.execute();
 		HashMap<String, Object> hm = new HashMap<String, Object>();
-		hm.put(Constants.Pagination.DATA, list);
-		hm.put(Constants.Pagination.OFFSET, offset);
-		hm.put(Constants.Pagination.COUNT, count);
+		hm.put(constants.Pagination.DATA, list);
+		hm.put(constants.Pagination.OFFSET, offset);
+		hm.put(constants.Pagination.COUNT, count);
 		String songString = null;
 		try {
 			songString = mapper.writeValueAsString(hm);
@@ -54,15 +54,15 @@ public class services {
 		Emp e = null;
 		String i = "";
 		try {
-			e = mapper.readValue(payload, Song.class);
+			e = mapper.readValue(payload, Emp.class);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			Response.status(400).entity("could not read string").build();
 		}
 		try {
-			i = create.execute(s);
-		} catch (Exception e) {
-			e.printStackTrace();
+			i = create.execute(e);
+		} catch (Exception ev) {
+			ev.printStackTrace();
 			Response.status(500).build();
 		}
 		return Response.status(200).entity(i).build();

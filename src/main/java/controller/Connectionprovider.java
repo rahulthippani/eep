@@ -1,4 +1,5 @@
-package model;
+package controller;
+
 
 import java.net.URI;
 import java.net.URISyntaxException;
